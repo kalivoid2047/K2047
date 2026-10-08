@@ -294,11 +294,69 @@
     background-size: 28px 28px; }
   .thumb .glyph { position: relative; font-family: var(--display); font-weight: 900; font-size: 3.4rem; letter-spacing: .1em;
     color: rgba(var(--wh),.92); text-shadow: 0 0 30px currentColor; }
-  .t1 { background: radial-gradient(circle at 30% 20%, rgba(0,229,255,.55), var(--navy) 70%); }
-  .t2 { background: radial-gradient(circle at 70% 25%, rgba(212,175,55,.5), var(--navy) 70%); }
-  .t3 { background: radial-gradient(circle at 50% 10%, rgba(85,107,47,.8), var(--navy) 75%); }
-  .t4 { background: radial-gradient(circle at 50% 15%, rgba(0,229,255,.35), rgba(212,175,55,.2) 40%, var(--navy) 75%); }
+  .t1 { background: radial-gradient(70% 90% at 50% 30%, rgba(0,229,255,.28), transparent 70%), radial-gradient(50% 60% at 85% 90%, rgba(212,175,55,.2), transparent 70%), linear-gradient(160deg, #0b1e3b, #050b17); }
+  .t2 { background: radial-gradient(60% 80% at 20% 20%, rgba(47,139,255,.4), transparent 70%), radial-gradient(60% 80% at 85% 85%, rgba(46,229,157,.32), transparent 70%), linear-gradient(160deg, #07142b, #03091a); }
+  .t3 { background: radial-gradient(60% 70% at 50% 0%, rgba(255,255,255,.2), transparent 70%), radial-gradient(70% 60% at 50% 100%, rgba(76,201,240,.22), transparent 70%), linear-gradient(180deg, #1a202a, #0b0d10); }
+  .t4 { background: radial-gradient(60% 80% at 50% 110%, rgba(227,30,36,.38), transparent 70%), linear-gradient(180deg, #151515, #0a0a0a); }
   .thumb .glyph { font-size: clamp(1.8rem, 5vw, 2.6rem); }
+
+  /* Each project card carries its own project's look */
+  .p-ai      { --a: #00E5FF; --b: #D4AF37; }
+  .p-connect { --a: #2F8BFF; --b: #2EE59D; }
+  .p-sim     { --a: #4CC9F0; --b: #9AA7BB; }
+  .p-tiff    { --a: #E31E24; --b: #FFC107; }
+  .project .tag { color: var(--b); }
+  .project .more { color: var(--a) !important; transition: letter-spacing .25s; }
+  .project:hover .more { letter-spacing: .14em; }
+  .project:hover { border-color: var(--a); box-shadow: 0 30px 70px rgba(var(--sh),.55), 0 0 44px color-mix(in srgb, var(--a) 28%, transparent); }
+  .project .plogo { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 34px color-mix(in srgb, var(--a) 45%, transparent); }
+  .thumb { height: 210px; }
+  .thumb > .plogo, .thumb > .glyph { z-index: 2; }
+  .thumb > .glyph { text-shadow: 0 2px 10px #000, 0 0 3px rgba(0,0,0,.9); }
+  .art { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Kylan AI: orbits + stars */
+  .art-ai .ring-a, .art-ai .ring-b { position: absolute; left: 50%; top: 46%; border-radius: 50%; }
+  .art-ai .ring-a { width: 190px; height: 190px; margin: -95px 0 0 -95px; border: 1px solid rgba(0,229,255,.5); box-shadow: 0 0 24px rgba(0,229,255,.2); animation: spin 14s linear infinite; }
+  .art-ai .ring-b { width: 260px; height: 260px; margin: -130px 0 0 -130px; border: 1px dashed rgba(212,175,55,.5); animation: spin 22s linear infinite reverse; }
+  .art-ai i { position: absolute; top: -5px; left: calc(50% - 5px); width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px #00E5FF; }
+  .art-ai .ring-b i { box-shadow: 0 0 14px #D4AF37; background: #fff6c9; }
+  .art-ai .stars { position: absolute; inset: 0; opacity: .7;
+    background-image: radial-gradient(1.5px 1.5px at 12% 22%, #9fe9ff, transparent), radial-gradient(1.5px 1.5px at 78% 18%, #fff, transparent), radial-gradient(1px 1px at 30% 80%, #D4AF37, transparent),
+      radial-gradient(1.5px 1.5px at 88% 70%, #9fe9ff, transparent), radial-gradient(1px 1px at 55% 12%, #fff, transparent), radial-gradient(1px 1px at 6% 62%, #fff, transparent); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Kylan Connect: peer-to-peer network */
+  .art-connect line { stroke: rgba(122,190,255,.35); stroke-width: 1; }
+  .art-connect .pkt { stroke: #2EE59D; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 6 60; animation: packet 2.8s linear infinite; filter: drop-shadow(0 0 4px #2EE59D); }
+  .art-connect .pkt:nth-of-type(2n) { animation-duration: 3.6s; stroke: #5db4ff; }
+  @keyframes packet { to { stroke-dashoffset: -132; } }
+  .art-connect circle { fill: #0b1a35; stroke: #2F8BFF; stroke-width: 1.5; }
+  .art-connect circle.n2 { stroke: #2EE59D; }
+  .art-connect circle.pulse { fill: none; transform-box: fill-box; transform-origin: center; animation: ping 2.6s ease-out infinite; }
+  @keyframes ping { from { transform: scale(1); opacity: .8; } to { transform: scale(2.6); opacity: 0; } }
+
+  /* Color Simulator: showroom, spotlight, turntable, paint chips */
+  .art-sim .spot { position: absolute; left: 50%; top: -30%; width: 70%; height: 130%; transform: translateX(-50%);
+    background: conic-gradient(from 180deg at 50% 0, transparent 160deg, rgba(255,255,255,.14) 175deg, rgba(255,255,255,.14) 185deg, transparent 200deg); filter: blur(6px); }
+  .art-sim .floor { position: absolute; left: 50%; bottom: -26px; width: 78%; aspect-ratio: 3.2; transform: translateX(-50%); border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(76,201,240,.22), transparent 75%); border: 1px solid rgba(76,201,240,.35); }
+  .art-sim .floor::after { content: ""; position: absolute; inset: 14%; border-radius: 50%; border: 1px dashed rgba(255,255,255,.3); animation: spin 18s linear infinite; }
+  .art-sim .chips { position: absolute; left: 14px; bottom: 14px; display: flex; gap: 6px; }
+  .art-sim .chips b { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.55); box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+
+  /* Tiff Tester Pro: oscilloscope */
+  .p-tiff .thumb::before { background-image: linear-gradient(rgba(227,30,36,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(227,30,36,.14) 1px, transparent 1px); background-size: 24px 24px; }
+  .art-tiff .wave { position: absolute; left: 0; top: 18%; height: 64%; width: 200%; animation: scope 5s linear infinite; }
+  .art-tiff .wave path { fill: none; stroke: #E31E24; stroke-width: 2.2; stroke-linejoin: round; filter: drop-shadow(0 0 5px #E31E24); }
+  .art-tiff .wave path.w2 { stroke: #FFC107; stroke-width: 1.4; opacity: .7; filter: drop-shadow(0 0 4px #FFC107); }
+  @keyframes scope { to { transform: translateX(-50%); } }
+  .art-tiff .corner { position: absolute; width: 16px; height: 16px; border: 2px solid rgba(227,30,36,.8); }
+  .art-tiff .tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; } .art-tiff .bl { bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
+  .art-tiff .br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+  .art-tiff .scan { position: absolute; left: 0; right: 0; height: 40%; background: linear-gradient(transparent, rgba(227,30,36,.12), transparent); animation: sweep 3.4s ease-in-out infinite; }
+  @keyframes sweep { 0% { top: -40%; } 100% { top: 100%; } }
   .thumb.has-logo, .modal-head.has-logo { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
   .plogo { position: relative; width: 84px; height: 84px; border-radius: 22px; object-fit: cover; padding: 0; background: #060d1c;
     border: 1px solid rgba(255,255,255,.28); box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 34px rgba(0,229,255,.28); }
@@ -631,20 +689,28 @@
       <p>Tap a project for the details.</p>
     </div>
     <div class="work-grid">
-      <a class="project reveal" href="#work" data-project="kylan-ai">
-        <div class="thumb t1 has-logo"><span class="badge dev">In development</span><img class="plogo pad" src="assets/logos/kylan-ai.svg" alt="Kylan AI logo" loading="lazy"><span class="glyph">KYLAN AI</span></div>
+      <a class="project p-ai reveal" href="#work" data-project="kylan-ai">
+        <div class="thumb t1 has-logo"><div class="art art-ai" aria-hidden="true"><div class="stars"></div><div class="ring-a"><i></i></div><div class="ring-b"><i></i></div></div><span class="badge dev">In development</span><img class="plogo pad" src="assets/logos/kylan-ai.svg" alt="Kylan AI logo" loading="lazy"><span class="glyph">KYLAN AI</span></div>
         <div class="proj-body"><span class="tag">AI · Personal assistant</span><h3>Kylan AI</h3><p>A personal AI operating layer: a private, user-owned assistant with long-term memory you control, a model-agnostic core, web, desktop and CLI.</p><span class="more">View details →</span></div>
       </a>
-      <a class="project reveal" style="--d:.1s" href="#work" data-project="kylan-connect">
-        <div class="thumb t2 has-logo"><span class="badge dev">In development</span><img class="plogo" src="assets/logos/kylan-connect.png" alt="Kylan Connect logo" loading="lazy"><span class="glyph">KYLAN CONNECT</span></div>
+      <a class="project p-connect reveal" style="--d:.1s" href="#work" data-project="kylan-connect">
+        <div class="thumb t2 has-logo"><div class="art art-connect" aria-hidden="true"><svg viewBox="0 0 400 210" preserveAspectRatio="xMidYMid slice">
+          <g><line x1="60" y1="50" x2="200" y2="105"/><line x1="200" y1="105" x2="340" y2="45"/><line x1="60" y1="50" x2="85" y2="170"/><line x1="85" y1="170" x2="200" y2="105"/><line x1="200" y1="105" x2="325" y2="165"/><line x1="340" y1="45" x2="325" y2="165"/></g>
+          <g><line class="pkt" x1="60" y1="50" x2="200" y2="105"/><line class="pkt" x1="200" y1="105" x2="340" y2="45"/><line class="pkt" x1="325" y1="165" x2="200" y2="105"/><line class="pkt" x1="85" y1="170" x2="60" y2="50"/></g>
+          <circle cx="60" cy="50" r="7"/><circle cx="340" cy="45" r="7" class="n2"/><circle cx="85" cy="170" r="7" class="n2"/><circle cx="325" cy="165" r="7"/><circle cx="200" cy="105" r="9" class="n2"/>
+          <circle class="pulse" cx="60" cy="50" r="7" style="stroke:#2F8BFF"/><circle class="pulse" cx="325" cy="165" r="7" style="stroke:#2EE59D;animation-delay:1.2s"/>
+        </svg></div><span class="badge dev">In development</span><img class="plogo" src="assets/logos/kylan-connect.png" alt="Kylan Connect logo" loading="lazy"><span class="glyph">KYLAN CONNECT</span></div>
         <div class="proj-body"><span class="tag">Mobile · P2P messaging</span><h3>Kylan Connect</h3><p>A peer-to-peer messaging app built with Flutter for Android, iOS and Windows.</p><span class="more">View details →</span></div>
       </a>
-      <a class="project reveal" style="--d:.2s" href="#work" data-project="color-simulator">
-        <div class="thumb t3 has-logo"><span class="badge live">Live demo</span><img class="plogo pad" src="assets/logos/color-simulator.svg" alt="Color Simulator logo" loading="lazy"><span class="glyph">COLOR SIMULATOR</span></div>
+      <a class="project p-sim reveal" style="--d:.2s" href="#work" data-project="color-simulator">
+        <div class="thumb t3 has-logo"><div class="art art-sim" aria-hidden="true"><div class="spot"></div><div class="floor"></div><div class="chips"><b style="background:#e63946"></b><b style="background:#f4a261"></b><b style="background:#2a9d8f"></b><b style="background:#4cc9f0"></b><b style="background:#8d99ae"></b></div></div><span class="badge live">Live demo</span><img class="plogo pad" src="assets/logos/color-simulator.svg" alt="Color Simulator logo" loading="lazy"><span class="glyph">COLOR SIMULATOR</span></div>
         <div class="proj-body"><span class="tag">3D · Web app</span><h3>Color Simulator</h3><p>A browser-based 3D car paint and customization studio: paint panels with realistic finishes, add decals, swap wheels and export renders.</p><span class="more">View details →</span></div>
       </a>
-      <a class="project reveal" style="--d:.3s" href="#work" data-project="tiff-tester-pro">
-        <div class="thumb t4"><span class="badge proto">Bench prototype</span><span class="glyph">TIFF</span></div>
+      <a class="project p-tiff reveal" style="--d:.3s" href="#work" data-project="tiff-tester-pro">
+        <div class="thumb t4 has-logo"><div class="art art-tiff" aria-hidden="true"><div class="scan"></div>
+          <svg class="wave" viewBox="0 0 800 130" preserveAspectRatio="none"><path d="M0 65 L40 65 L40 25 L100 25 L100 105 L160 105 L160 25 L220 25 L220 65 L260 65 L275 65 L290 15 L305 115 L320 65 L400 65 L440 65 L440 25 L500 25 L500 105 L560 105 L560 25 L620 25 L620 65 L660 65 L675 65 L690 15 L705 115 L720 65 L800 65"/><path class="w2" d="M0 85 Q50 40 100 85 T200 85 T300 85 T400 85 T500 85 T600 85 T700 85 T800 85"/></svg>
+          <span class="corner tl"></span><span class="corner bl"></span><span class="corner br"></span></div>
+          <span class="badge proto">Bench prototype</span><img class="plogo" src="assets/logos/tiff-tester-pro.png" alt="Tiff Tester Pro logo" loading="lazy"><span class="glyph">TIFF TESTER PRO</span></div>
         <div class="proj-body"><span class="tag">Hardware · Diagnostics</span><h3>Tiff Tester Pro</h3><p>An automotive module tester and diagnostic platform: ESP32 controller, independent Arduino safety controller and a Flutter companion app.</p><span class="more">View details →</span></div>
       </a>
     </div>
@@ -881,7 +947,7 @@
       links: [], demo: COLOR_SIM_DEMO_URL
     },
     'tiff-tester-pro': {
-      title: 'Tiff Tester Pro', tag: 'Hardware · Diagnostics', glyph: 'TIFF', bg: 't4', badge: ['proto', 'Bench prototype'],
+      title: 'Tiff Tester Pro', tag: 'Hardware · Diagnostics', glyph: 'TIFF TESTER PRO', logo: 'assets/logos/tiff-tester-pro.png', bg: 't4', badge: ['proto', 'Bench prototype'],
       desc: 'A bench-first automotive module tester, diagnostic and service platform. An ESP32 main controller works alongside an independent Arduino Nano safety controller, with a Flutter companion app for Android.',
       feat: ['Dual-controller safety architecture', 'CAN and K-Line drivers and a BLE service', 'Test execution driven by module profiles stored on an SD card', 'Version 0.3.0: implemented, but not yet validated end to end on real hardware'],
       stack: ['ESP32', 'Arduino Nano', 'C++', 'CAN / K-Line', 'Bluetooth LE', 'Flutter'],
