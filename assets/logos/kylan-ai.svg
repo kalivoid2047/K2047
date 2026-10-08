@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Kylan">
+  <defs>
+    <linearGradient id="k" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00E5FF"/><stop offset="1" stop-color="#1457D6"/></linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3D36B"/><stop offset="1" stop-color="#D4AF37"/></linearGradient>
+    <linearGradient id="o" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4AF37"/><stop offset=".5" stop-color="#D4AF37" stop-opacity=".85"/><stop offset="1" stop-color="#00E5FF"/></linearGradient>
+    <radialGradient id="sg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFF1B0"/><stop offset="1" stop-color="#D4AF37"/></radialGradient>
+    <radialGradient id="sc" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#BFF8FF"/><stop offset="1" stop-color="#00A8E8"/></radialGradient>
+  </defs>
+  <ellipse cx="60" cy="60" rx="50" ry="44" fill="none" stroke="url(#o)" stroke-width="3" transform="rotate(-18 60 60)"/>
+  <g transform="translate(-6 0)">
+    <path d="M34 26 L47 19 V99 H34 Z" fill="url(#k)"/>
+    <path d="M49 62 L84 28 H99 L58 74 Z" fill="url(#k)"/>
+    <path d="M57 68 H73 L100 99 H83 Z" fill="url(#k)" opacity=".92"/>
+  </g>
+  <path d="M82 54 L75 68 H88 M85 61 V75" fill="none" stroke="url(#g)" stroke-width="3.6" stroke-linejoin="miter"/>
+  <path d="M91 54 H103 L96 75" fill="none" stroke="url(#g)" stroke-width="3.6" stroke-linejoin="miter"/>
+  <circle cx="98" cy="24" r="6" fill="url(#sg)"/>
+  <circle cx="22" cy="88" r="5.5" fill="url(#sc)"/>
+</svg>

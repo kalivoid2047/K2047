@@ -299,6 +299,12 @@
   .t3 { background: radial-gradient(circle at 50% 10%, rgba(85,107,47,.8), var(--navy) 75%); }
   .t4 { background: radial-gradient(circle at 50% 15%, rgba(0,229,255,.35), rgba(212,175,55,.2) 40%, var(--navy) 75%); }
   .thumb .glyph { font-size: clamp(1.8rem, 5vw, 2.6rem); }
+  .thumb.has-logo, .modal-head.has-logo { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
+  .plogo { position: relative; width: 84px; height: 84px; border-radius: 22px; object-fit: cover; padding: 0; background: #060d1c;
+    border: 1px solid rgba(255,255,255,.28); box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 34px rgba(0,229,255,.28); }
+  .plogo.pad { padding: 14px; }
+  .has-logo .glyph { font-size: .95rem !important; letter-spacing: .32em !important; opacity: .95; }
+  .modal-head.has-logo .plogo { width: 76px; height: 76px; }
   .proj-body { padding: 24px 26px 28px; }
   .tag { font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
   .proj-body h3 { font-family: var(--display); font-size: 1.1rem; letter-spacing: .08em; margin: 8px 0 8px; }
@@ -626,15 +632,15 @@
     </div>
     <div class="work-grid">
       <a class="project reveal" href="#work" data-project="kylan-ai">
-        <div class="thumb t1"><span class="badge dev">In development</span><span class="glyph">KYLAN</span></div>
+        <div class="thumb t1 has-logo"><span class="badge dev">In development</span><img class="plogo pad" src="assets/logos/kylan-ai.svg" alt="Kylan AI logo" loading="lazy"><span class="glyph">KYLAN AI</span></div>
         <div class="proj-body"><span class="tag">AI · Personal assistant</span><h3>Kylan AI</h3><p>A personal AI operating layer: a private, user-owned assistant with long-term memory you control, a model-agnostic core, web, desktop and CLI.</p><span class="more">View details →</span></div>
       </a>
       <a class="project reveal" style="--d:.1s" href="#work" data-project="kylan-connect">
-        <div class="thumb t2"><span class="badge dev">In development</span><span class="glyph">K·LINK</span></div>
+        <div class="thumb t2 has-logo"><span class="badge dev">In development</span><img class="plogo" src="assets/logos/kylan-connect.png" alt="Kylan Connect logo" loading="lazy"><span class="glyph">KYLAN CONNECT</span></div>
         <div class="proj-body"><span class="tag">Mobile · P2P messaging</span><h3>Kylan Connect</h3><p>A peer-to-peer messaging app built with Flutter for Android, iOS and Windows.</p><span class="more">View details →</span></div>
       </a>
       <a class="project reveal" style="--d:.2s" href="#work" data-project="color-simulator">
-        <div class="thumb t3"><span class="badge live">Phase 1 complete</span><span class="glyph">3D·PAINT</span></div>
+        <div class="thumb t3 has-logo"><span class="badge live">Live demo</span><img class="plogo pad" src="assets/logos/color-simulator.svg" alt="Color Simulator logo" loading="lazy"><span class="glyph">COLOR SIMULATOR</span></div>
         <div class="proj-body"><span class="tag">3D · Web app</span><h3>Color Simulator</h3><p>A browser-based 3D car paint and customization studio: paint panels with realistic finishes, add decals, swap wheels and export renders.</p><span class="more">View details →</span></div>
       </a>
       <a class="project reveal" style="--d:.3s" href="#work" data-project="tiff-tester-pro">
@@ -651,6 +657,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <span class="badge" id="mBadge"></span>
+    <img class="plogo" id="mLogo" alt="" hidden>
     <span class="glyph" id="mGlyph"></span>
   </div>
   <div class="modal-body">
@@ -853,21 +860,21 @@
   // ---------- Projects + modal ----------
   const PROJECTS = {
     'kylan-ai': {
-      title: 'Kylan AI', tag: 'AI · Personal assistant', glyph: 'KYLAN', bg: 't1', badge: ['dev', 'In development'],
+      title: 'Kylan AI', tag: 'AI · Personal assistant', glyph: 'KYLAN AI', logo: 'assets/logos/kylan-ai.svg', pad: true, bg: 't1', badge: ['dev', 'In development'],
       desc: 'A personal AI operating layer. Kylan is a persistent, user-owned intelligence that knows your context, acts on your behalf within limits you set, and becomes more capable over time without taking authority you did not grant.',
       feat: ['Private and observable, with a model-agnostic core (cloud or local models)', 'Long-term memory the owner controls: it proposes, you accept', 'Incognito conversations that never read or write memory', 'Core service with a web UI, a desktop shell and a command-line interface', 'Verified daily backups of its database'],
       stack: ['TypeScript', 'Node.js', 'React', 'Vite', 'Tauri (Rust)', 'pnpm'],
       links: []
     },
     'kylan-connect': {
-      title: 'Kylan Connect', tag: 'Mobile · P2P messaging', glyph: 'K·LINK', bg: 't2', badge: ['dev', 'In development'],
+      title: 'Kylan Connect', tag: 'Mobile · P2P messaging', glyph: 'KYLAN CONNECT', logo: 'assets/logos/kylan-connect.png', bg: 't2', badge: ['dev', 'In development'],
       desc: 'A peer-to-peer messaging app: conversations that go straight between people instead of through a central server.',
       feat: ['Peer-to-peer messaging', 'One Flutter codebase for Android, iOS and Windows'],
       stack: ['Flutter', 'Dart'],
       links: []
     },
     'color-simulator': {
-      title: 'Color Simulator', tag: '3D · Web app', glyph: '3D·PAINT', bg: 't3', badge: ['live', 'Phase 1 complete'],
+      title: 'Color Simulator', tag: '3D · Web app', glyph: 'COLOR SIMULATOR', logo: 'assets/logos/color-simulator.svg', pad: true, bg: 't3', badge: ['live', 'Live demo'],
       desc: 'A browser-based 3D automotive paint and customization studio, built to grow into a full workshop simulation game. Pick a vehicle, orbit it in 3D, paint it, add decals, swap wheels, and export a render.',
       feat: ['Paint finishes: solid, metallic, matte, gloss, pearlescent and chrome', 'Decals projected onto the bodywork, with custom uploads', 'Wheel designs, undo and redo, and a saveable garage', '2× PNG export and a photo mode', 'Next: accounts, licensed vehicles and a career mode (designed, not built)'],
       stack: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Zustand', 'Vite'],
@@ -884,7 +891,9 @@
   const modal = $('#projectModal'), demoFrame = $('#mDemo');
   function openProject(id) {
     const p = PROJECTS[id]; if (!p) return;
-    $('#mHead').className = 'modal-head ' + p.bg;
+    $('#mHead').className = 'modal-head ' + p.bg + (p.logo ? ' has-logo' : '');
+    const lg = $('#mLogo'); lg.hidden = !p.logo;
+    if (p.logo) { lg.src = p.logo; lg.alt = p.title + ' logo'; lg.classList.toggle('pad', !!p.pad); }
     const b = $('#mBadge'); b.className = 'badge ' + p.badge[0]; b.textContent = p.badge[1];
     $('#mGlyph').textContent = p.glyph; $('#mTag').textContent = p.tag; $('#mTitle').textContent = p.title; $('#mDesc').textContent = p.desc;
     $('#mFeat').replaceChildren(...p.feat.map(t => Object.assign(document.createElement('li'), { textContent: t })));
