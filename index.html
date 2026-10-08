@@ -305,6 +305,7 @@
   .p-connect { --a: #2F8BFF; --b: #2EE59D; }
   .p-sim     { --a: #4CC9F0; --b: #9AA7BB; }
   .p-tiff    { --a: #E31E24; --b: #FFC107; }
+  .p-ai .thumb::before, .p-connect .thumb::before, .p-sim .thumb::before { display: none; }   /* no square grid; Tiff keeps its oscilloscope grid */
   .project .tag { color: var(--b); }
   .project .more { color: var(--a) !important; transition: letter-spacing .25s; }
   .project:hover .more { letter-spacing: .14em; }
@@ -483,6 +484,11 @@
   .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
   .chips li { font-size: .72rem; padding: 5px 13px; border-radius: 999px; background: rgba(var(--wh),.07); border: 1px solid var(--glass-edge); }
   .modal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .shots { display: flex; gap: 14px; overflow-x: auto; padding: 4px 2px 14px; scroll-snap-type: x proximity; }
+  .shots a { flex: 0 0 auto; scroll-snap-align: start; display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-edge); background: #060d1c;
+    box-shadow: 0 10px 30px rgba(var(--sh),.35); transition: transform .25s, border-color .25s; }
+  .shots a:hover { transform: translateY(-3px); border-color: var(--cyan); }
+  .shots img { display: block; height: 300px; width: auto; max-width: none; }
   .demo-frame { width: 100%; height: 360px; border: 1px solid var(--glass-edge); border-radius: 16px; margin-top: 16px; background: #000; }
 
   /* ---------- JOURNAL ---------- */
@@ -734,6 +740,7 @@
     <ul class="feat" id="mFeat"></ul>
     <h5>Built with</h5>
     <ul class="chips" id="mStack"></ul>
+    <div id="mShotsWrap" hidden><h5>Screenshots</h5><div class="shots" id="mShots"></div></div>
     <div class="modal-actions" id="mActions"></div>
     <iframe class="demo-frame" id="mDemo" title="Live demo" hidden loading="lazy"></iframe>
   </div>
@@ -926,6 +933,7 @@
   // ---------- Projects + modal ----------
   const PROJECTS = {
     'kylan-ai': {
+      shots: [],   // e.g. ['assets/screens/kylan-ai-1.png', 'assets/screens/kylan-ai-2.png']
       title: 'Kylan AI', tag: 'AI · Personal assistant', glyph: 'KYLAN AI', logo: 'assets/logos/kylan-ai.svg', pad: true, bg: 't1', badge: ['dev', 'In development'],
       desc: 'A personal AI operating layer. Kylan is a persistent, user-owned intelligence that knows your context, acts on your behalf within limits you set, and becomes more capable over time without taking authority you did not grant.',
       feat: ['Private and observable, with a model-agnostic core (cloud or local models)', 'Long-term memory the owner controls: it proposes, you accept', 'Incognito conversations that never read or write memory', 'Core service with a web UI, a desktop shell and a command-line interface', 'Verified daily backups of its database'],
@@ -933,6 +941,7 @@
       links: []
     },
     'kylan-connect': {
+      shots: [],   // e.g. ['assets/screens/kylan-connect-1.png', ...]
       title: 'Kylan Connect', tag: 'Mobile · P2P messaging', glyph: 'KYLAN CONNECT', logo: 'assets/logos/kylan-connect.png', bg: 't2', badge: ['dev', 'In development'],
       desc: 'A peer-to-peer messaging app: conversations that go straight between people instead of through a central server.',
       feat: ['Peer-to-peer messaging', 'One Flutter codebase for Android, iOS and Windows'],
@@ -964,6 +973,13 @@
     $('#mGlyph').textContent = p.glyph; $('#mTag').textContent = p.tag; $('#mTitle').textContent = p.title; $('#mDesc').textContent = p.desc;
     $('#mFeat').replaceChildren(...p.feat.map(t => Object.assign(document.createElement('li'), { textContent: t })));
     $('#mStack').replaceChildren(...p.stack.map(t => Object.assign(document.createElement('li'), { textContent: t })));
+    const shots = p.shots || [];
+    $('#mShotsWrap').hidden = !shots.length;
+    $('#mShots').replaceChildren(...shots.map((src, i) => {
+      const a = Object.assign(document.createElement('a'), { href: src, target: '_blank', rel: 'noopener' });
+      a.append(Object.assign(document.createElement('img'), { src, alt: p.title + ' screenshot ' + (i + 1), loading: 'lazy' }));
+      return a;
+    }));
     const act = $('#mActions'); act.replaceChildren();
     demoFrame.hidden = true; demoFrame.removeAttribute('src');
     if (p.demo) {
