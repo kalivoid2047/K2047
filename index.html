@@ -4,7 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kylan 2047 — Ideas / Systems / Impact</title>
-<meta name="description" content="Kylan 2047 — built for the future. Same dream, bigger systems.">
+<meta name="description" content="Kylan 2047 — ideas, systems and impact. Intelligent systems built for the future: AI, mobile, 3D web and hardware.">
+<meta name="theme-color" content="#050B17">
+<!-- Share previews. Once the site has a domain, change og:image and og:url to absolute URLs (https://your-domain/...) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kylan 2047">
+<meta property="og:title" content="Kylan 2047 — Ideas / Systems / Impact">
+<meta property="og:description" content="Intelligent systems built for the future. Same dream, bigger systems.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kylan 2047 — Ideas / Systems / Impact">
+<meta name="twitter:description" content="Intelligent systems built for the future. Same dream, bigger systems.">
+<meta name="twitter:image" content="assets/og.png">
+<script>
+  // Apply saved theme before first paint (no flash). Dark is the brand default.
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  document.documentElement.classList.add('js');
+</script>
 <link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,11 +34,26 @@
     --ink: #050B17;
     --text: #E8F1FF;
     --muted: #8FA3C2;
-    --glass: rgba(255,255,255,.06);
-    --glass-edge: rgba(255,255,255,.18);
+    --wh: 255,255,255;      /* tint used for glass (white on dark) */
+    --sh: 0,0,0;            /* shadow colour */
+    --field: rgba(5,11,23,.55);
+    --nav: rgba(11,30,59,.45);
+    --glass: rgba(var(--wh),.06);
+    --glass-edge: rgba(var(--wh),.18);
     --display: 'Orbitron', system-ui, sans-serif;
     --body: 'Inter', system-ui, sans-serif;
   }
+  :root[data-theme="light"] {
+    --ink: #F2F6FC; --navy: #DFEAF8; --text: #0B1E3B; --muted: #4C6283;
+    --cyan: #0091B3; --gold: #8F6D0A;
+    --wh: 11,30,59; --sh: 11,30,59;
+    --field: rgba(255,255,255,.85); --nav: rgba(255,255,255,.6);
+  }
+  :root[data-theme="light"] .core .glass-disc { background: radial-gradient(circle at 30% 25%, #1b3a66, #08142a 70%); }
+  :root[data-theme="light"] .core img { mix-blend-mode: normal; }
+  :root[data-theme="light"] .btn-primary { color: #fff; background: linear-gradient(135deg, #0091B3, #2f6fe0); }
+  :root[data-theme="light"] .links a.btn-primary { color: #fff; }
+  [hidden] { display: none !important; }
   * { box-sizing: border-box; margin: 0; }
   html { scroll-behavior: smooth; }
   body {
@@ -38,12 +70,12 @@
     max-width: 1180px; margin-inline: auto;
     display: flex; align-items: center; justify-content: space-between;
     padding: 10px 14px 10px 18px;
-    background: rgba(11,30,59,.45);
+    background: var(--nav);
     border: 1px solid var(--glass-edge);
     border-radius: 999px;
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
-    box-shadow: 0 10px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.15);
+    box-shadow: 0 10px 40px rgba(var(--sh),.4), inset 0 1px 0 rgba(var(--wh),.15);
   }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text);
     font-family: var(--display); font-weight: 700; letter-spacing: .28em; font-size: .85rem; }
@@ -75,7 +107,7 @@
     position: relative; min-height: 100vh; min-height: 100svh;
     display: grid; place-items: center;
     padding: 120px 24px 80px;
-    isolation: isolate;
+    isolation: isolate; overflow: clip;
     background:
       radial-gradient(60% 50% at 75% 40%, rgba(0,229,255,.16), transparent 70%),
       radial-gradient(50% 45% at 20% 80%, rgba(212,175,55,.12), transparent 70%),
@@ -114,7 +146,7 @@
     font-family: var(--display); font-weight: 900; line-height: 1.02;
     font-size: clamp(2.8rem, 7vw, 5.6rem); letter-spacing: .08em;
   }
-  h1 .name { display: block; color: #fff; text-shadow: 0 0 40px rgba(0,229,255,.35); }
+  h1 .name { display: block; color: var(--text); text-shadow: 0 0 40px rgba(0,229,255,.35); }
   h1 .year {
     display: block; font-size: .62em; letter-spacing: .38em; margin-top: .1em;
     background: linear-gradient(90deg, var(--gold), #f7e08a, var(--gold));
@@ -135,10 +167,10 @@
   .core { left: 50%; top: 50%; width: 330px; height: 330px; margin: -165px 0 0 -165px; transform: translateZ(60px); animation: float 7s ease-in-out infinite; }
   .core .glass-disc {
     position: absolute; inset: 0; border-radius: 50%;
-    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.22), rgba(255,255,255,.04) 55%, rgba(0,229,255,.08));
+    background: radial-gradient(circle at 30% 25%, rgba(var(--wh),.22), rgba(var(--wh),.04) 55%, rgba(0,229,255,.08));
     border: 1px solid var(--glass-edge);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 90px rgba(0,229,255,.25), inset 0 0 40px rgba(255,255,255,.08);
+    box-shadow: 0 30px 80px rgba(var(--sh),.55), 0 0 90px rgba(0,229,255,.25), inset 0 0 40px rgba(var(--wh),.08);
   }
   .core img {
     position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: contain;
@@ -167,10 +199,10 @@
 
   .card {
     position: absolute; padding: 16px 20px; border-radius: 20px; min-width: 170px;
-    background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
+    background: linear-gradient(145deg, rgba(var(--wh),.14), rgba(var(--wh),.03));
     border: 1px solid var(--glass-edge);
     backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%);
-    box-shadow: 0 24px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.25);
+    box-shadow: 0 24px 60px rgba(var(--sh),.5), inset 0 1px 0 rgba(var(--wh),.25);
   }
   .card small { display: block; font-size: .64rem; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
   .card strong { display: block; margin-top: 4px; font-family: var(--display); font-size: 1.05rem; letter-spacing: .1em; }
@@ -193,14 +225,14 @@
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; perspective: 1000px; }
   .pillar {
     padding: 34px 28px; border-radius: 24px;
-    background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+    background: linear-gradient(145deg, rgba(var(--wh),.09), rgba(var(--wh),.02));
     border: 1px solid var(--glass-edge);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+    box-shadow: inset 0 1px 0 rgba(var(--wh),.18);
     transition: transform .25s ease-out, border-color .3s, box-shadow .3s;
     transform-style: preserve-3d; will-change: transform;
   }
-  .pillar:hover { border-color: rgba(0,229,255,.5); box-shadow: 0 30px 70px rgba(0,0,0,.5), 0 0 40px rgba(0,229,255,.15); }
+  .pillar:hover { border-color: rgba(0,229,255,.5); box-shadow: 0 30px 70px rgba(var(--sh),.5), 0 0 40px rgba(0,229,255,.15); }
   .pillar .num { font-family: var(--display); font-size: .8rem; letter-spacing: .3em; color: var(--gold); transform: translateZ(30px); display: block; }
   .pillar h3 { font-family: var(--display); font-size: 1.35rem; letter-spacing: .12em; margin: 18px 0 10px; transform: translateZ(40px); }
   .pillar p { color: var(--muted); font-weight: 300; transform: translateZ(20px); }
@@ -221,10 +253,10 @@
   .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; perspective: 1000px; }
   .svc {
     position: relative; padding: 34px 28px; border-radius: 24px; overflow: hidden;
-    background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+    background: linear-gradient(145deg, rgba(var(--wh),.09), rgba(var(--wh),.02));
     border: 1px solid var(--glass-edge);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+    box-shadow: inset 0 1px 0 rgba(var(--wh),.18);
     transition: transform .25s ease-out, border-color .3s, box-shadow .3s;
     transform-style: preserve-3d; will-change: transform;
   }
@@ -232,38 +264,40 @@
     content: ""; position: absolute; inset: -40% -20% auto auto; width: 220px; height: 220px; border-radius: 50%;
     background: radial-gradient(circle, var(--accent, var(--cyan)), transparent 70%); opacity: .18; transition: opacity .3s;
   }
-  .svc:hover { border-color: var(--accent, var(--cyan)); box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+  .svc:hover { border-color: var(--accent, var(--cyan)); box-shadow: 0 30px 70px rgba(var(--sh),.5); }
   .svc:hover::before { opacity: .38; }
   .svc.gold { --accent: var(--gold); }
   .svc .ico {
     width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; font-size: 1.5rem;
-    background: rgba(255,255,255,.07); border: 1px solid var(--glass-edge); color: var(--accent, var(--cyan));
+    background: rgba(var(--wh),.07); border: 1px solid var(--glass-edge); color: var(--accent, var(--cyan));
     transform: translateZ(40px);
   }
   .svc h3 { font-family: var(--display); font-size: 1.15rem; letter-spacing: .1em; margin: 22px 0 10px; transform: translateZ(30px); }
   .svc p { color: var(--muted); font-weight: 300; font-size: .96rem; }
   .svc ul { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .svc li { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px;
-    background: rgba(255,255,255,.06); border: 1px solid var(--glass-edge); color: var(--text); }
+    background: rgba(var(--wh),.06); border: 1px solid var(--glass-edge); color: var(--text); }
 
   /* ---------- WORK ---------- */
   .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; perspective: 1200px; }
   .project {
     border-radius: 24px; overflow: hidden; text-decoration: none; color: inherit; display: block;
-    background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    background: linear-gradient(145deg, rgba(var(--wh),.08), rgba(var(--wh),.02));
     border: 1px solid var(--glass-edge);
     transition: transform .25s ease-out, border-color .3s, box-shadow .3s; will-change: transform;
   }
-  .project:hover { border-color: rgba(0,229,255,.5); box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 40px rgba(0,229,255,.12); }
+  .project:hover { border-color: rgba(0,229,255,.5); box-shadow: 0 30px 70px rgba(var(--sh),.55), 0 0 40px rgba(0,229,255,.12); }
   .thumb { height: 190px; position: relative; display: grid; place-items: center; overflow: hidden; }
   .thumb::before { content: ""; position: absolute; inset: 0; background-image:
-      linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+      linear-gradient(rgba(var(--wh),.07) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--wh),.07) 1px, transparent 1px);
     background-size: 28px 28px; }
   .thumb .glyph { position: relative; font-family: var(--display); font-weight: 900; font-size: 3.4rem; letter-spacing: .1em;
-    color: rgba(255,255,255,.92); text-shadow: 0 0 30px currentColor; }
+    color: rgba(var(--wh),.92); text-shadow: 0 0 30px currentColor; }
   .t1 { background: radial-gradient(circle at 30% 20%, rgba(0,229,255,.55), var(--navy) 70%); }
   .t2 { background: radial-gradient(circle at 70% 25%, rgba(212,175,55,.5), var(--navy) 70%); }
   .t3 { background: radial-gradient(circle at 50% 10%, rgba(85,107,47,.8), var(--navy) 75%); }
+  .t4 { background: radial-gradient(circle at 50% 15%, rgba(0,229,255,.35), rgba(212,175,55,.2) 40%, var(--navy) 75%); }
+  .thumb .glyph { font-size: clamp(1.8rem, 5vw, 2.6rem); }
   .proj-body { padding: 24px 26px 28px; }
   .tag { font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
   .proj-body h3 { font-family: var(--display); font-size: 1.1rem; letter-spacing: .08em; margin: 8px 0 8px; }
@@ -280,16 +314,16 @@
   .contact-copy .meta a:hover { color: var(--cyan); border-color: var(--cyan); }
   .form-card {
     padding: 36px; border-radius: 28px;
-    background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+    background: linear-gradient(145deg, rgba(var(--wh),.12), rgba(var(--wh),.03));
     border: 1px solid var(--glass-edge);
     backdrop-filter: blur(24px) saturate(170%); -webkit-backdrop-filter: blur(24px) saturate(170%);
-    box-shadow: 0 30px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.22);
+    box-shadow: 0 30px 80px rgba(var(--sh),.5), inset 0 1px 0 rgba(var(--wh),.22);
   }
   .field { display: block; margin-bottom: 18px; }
   .field span { display: block; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
   .field input, .field select, .field textarea {
     width: 100%; padding: 14px 16px; border-radius: 14px; font: 400 .95rem var(--body); color: var(--text);
-    background: rgba(5,11,23,.55); border: 1px solid var(--glass-edge); outline: none;
+    background: var(--field); border: 1px solid var(--glass-edge); outline: none;
     transition: border-color .2s, box-shadow .2s;
   }
   .field select option { background: var(--navy); }
@@ -303,9 +337,128 @@
   footer .big { font-family: var(--display); font-size: clamp(1.4rem, 4vw, 2.2rem); letter-spacing: .5em; color: var(--gold); }
   footer p { color: var(--muted); letter-spacing: .3em; font-size: .72rem; text-transform: uppercase; margin-top: 14px; }
 
+  /* ---------- THEME TOGGLE / NAV EXTRAS ---------- */
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .icon-btn { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+    background: var(--glass); border: 1px solid var(--glass-edge); color: var(--text); transition: color .2s, border-color .2s, transform .2s; }
+  .icon-btn:hover { color: var(--gold); border-color: var(--gold); transform: rotate(18deg); }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .sun { display: none; }
+  :root[data-theme="light"] .sun { display: block; }
+  :root[data-theme="light"] .moon { display: none; }
+
+  /* ---------- FLOATING WHATSAPP ---------- */
+  .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 58px; height: 58px; border-radius: 50%;
+    display: grid; place-items: center; color: #fff; text-decoration: none;
+    background: linear-gradient(145deg, #25D366, #128C7E); box-shadow: 0 10px 30px rgba(18,140,126,.5), inset 0 1px 0 rgba(255,255,255,.35);
+    transition: transform .2s; }
+  .wa-float:hover { transform: scale(1.1) translateY(-2px); }
+  .wa-float svg { width: 30px; height: 30px; }
+  .wa-float::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25D366; animation: pulse 2.4s ease-out infinite; }
+  @keyframes pulse { from { transform: scale(1); opacity: .7; } to { transform: scale(1.7); opacity: 0; } }
+
+  /* ---------- CURSOR GLOW ---------- */
+  .cursor-glow, .cursor-dot { position: fixed; left: 0; top: 0; pointer-events: none; z-index: 200; border-radius: 50%; opacity: 0; transition: opacity .3s; }
+  .cursor-glow { width: 360px; height: 360px; margin: -180px 0 0 -180px; background: radial-gradient(circle, rgba(0,229,255,.16), transparent 65%); mix-blend-mode: screen; }
+  .cursor-dot { width: 10px; height: 10px; margin: -5px 0 0 -5px; background: var(--cyan); box-shadow: 0 0 16px var(--cyan); transition: opacity .3s, width .2s, height .2s, margin .2s, background .2s; }
+  .cursor-dot.big { width: 34px; height: 34px; margin: -17px 0 0 -17px; background: transparent; border: 1.5px solid var(--gold); box-shadow: 0 0 18px rgba(212,175,55,.5); }
+  .has-cursor .cursor-glow, .has-cursor .cursor-dot { opacity: 1; }
+  :root[data-theme="light"] .cursor-glow { mix-blend-mode: normal; background: radial-gradient(circle, rgba(0,145,179,.14), transparent 65%); }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .js .reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- ABOUT / STATS / TIMELINE ---------- */
+  section.about { padding: 110px 24px; background: var(--ink); }
+  .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .about-copy h2 { font-family: var(--display); font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: .14em; margin: 14px 0 18px; }
+  .about-copy p { color: var(--muted); font-weight: 300; margin-bottom: 14px; max-width: 540px; }
+  .about-copy .btn { margin-top: 10px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .stat { padding: 26px 14px; text-align: center; border-radius: 22px; background: linear-gradient(145deg, rgba(var(--wh),.1), rgba(var(--wh),.02));
+    border: 1px solid var(--glass-edge); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .stat b { display: block; font-family: var(--display); font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--gold); }
+  .stat span { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .timeline { margin: 80px auto 0; max-width: 760px; position: relative; padding-left: 34px; }
+  .timeline::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--cyan), var(--gold), transparent); }
+  .tl-item { position: relative; margin-bottom: 28px; padding: 18px 22px; border-radius: 18px; background: rgba(var(--wh),.05); border: 1px solid var(--glass-edge); }
+  .tl-item::before { content: ""; position: absolute; left: -34px; top: 22px; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); border: 2px solid var(--muted); }
+  .tl-item.done::before { background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 14px var(--cyan); }
+  .tl-item.now::before { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 14px var(--gold); }
+  .tl-item small { font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+  .tl-item h4 { font-family: var(--display); font-size: 1rem; letter-spacing: .08em; margin: 4px 0; }
+  .tl-item p { color: var(--muted); font-size: .92rem; font-weight: 300; }
+  .timeline-title { text-align: center; font-family: var(--display); letter-spacing: .2em; margin-top: 80px; font-size: 1.1rem; }
+
+  /* ---------- STATUS BADGES / PROJECT CARDS ---------- */
+  .badge { position: absolute; top: 14px; right: 14px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 999px;
+    font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; background: rgba(5,11,23,.6); color: #e8f1ff; border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--c, var(--cyan)); box-shadow: 0 0 8px var(--c, var(--cyan)); }
+  .badge.dev { --c: #00E5FF; } .badge.proto { --c: #D4AF37; } .badge.live { --c: #7BD142; }
+  .project { cursor: pointer; }
+
+  /* ---------- PROJECT MODAL ---------- */
+  dialog.modal { margin: auto; width: min(680px, calc(100% - 32px)); max-height: calc(100% - 48px); overflow: auto; padding: 0; color: var(--text);
+    border: 1px solid var(--glass-edge); border-radius: 28px; background: linear-gradient(145deg, rgba(var(--wh),.12), rgba(var(--wh),.04)), var(--navy);
+    box-shadow: 0 40px 100px rgba(var(--sh),.6); }
+  dialog.modal::backdrop { background: rgba(3,7,16,.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  dialog.modal[open] { animation: pop .35s cubic-bezier(.2,.8,.2,1); }
+  @keyframes pop { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: none; } }
+  .modal-head { height: 150px; position: relative; display: grid; place-items: center; overflow: hidden; }
+  .modal-head .glyph { position: relative; font-family: var(--display); font-weight: 900; font-size: 2.4rem; letter-spacing: .1em; color: #fff; text-shadow: 0 0 30px currentColor; }
+  .modal-close { position: absolute; top: 14px; left: 14px; z-index: 3; }
+  .modal-body { padding: 28px 32px 34px; }
+  .modal-body h3 { font-family: var(--display); font-size: 1.5rem; letter-spacing: .1em; margin: 6px 0 12px; }
+  .modal-body p { color: var(--muted); font-weight: 300; margin-bottom: 16px; }
+  .modal-body h5 { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 20px 0 10px; }
+  .modal-body ul.feat { padding-left: 18px; color: var(--muted); font-weight: 300; font-size: .94rem; }
+  .modal-body ul.feat li { margin-bottom: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; }
+  .chips li { font-size: .72rem; padding: 5px 13px; border-radius: 999px; background: rgba(var(--wh),.07); border: 1px solid var(--glass-edge); }
+  .modal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .demo-frame { width: 100%; height: 360px; border: 1px solid var(--glass-edge); border-radius: 16px; margin-top: 16px; background: #000; }
+
+  /* ---------- JOURNAL ---------- */
+  section.journal { padding: 110px 24px; background: linear-gradient(var(--ink), var(--navy)); }
+  .entries { max-width: 820px; margin: 0 auto; display: grid; gap: 16px; }
+  details.entry { border-radius: 20px; background: linear-gradient(145deg, rgba(var(--wh),.08), rgba(var(--wh),.02)); border: 1px solid var(--glass-edge); transition: border-color .3s; }
+  details.entry[open] { border-color: rgba(0,229,255,.45); }
+  details.entry summary { list-style: none; cursor: pointer; padding: 22px 26px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  details.entry summary::-webkit-details-marker { display: none; }
+  details.entry summary::after { content: "+"; font-family: var(--display); font-size: 1.4rem; color: var(--gold); transition: transform .3s; }
+  details.entry[open] summary::after { transform: rotate(45deg); }
+  .entry small { font-size: .64rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+  .entry h3 { font-family: var(--display); font-size: 1.05rem; letter-spacing: .08em; margin-top: 4px; }
+  .entry .entry-body { padding: 0 26px 24px; color: var(--muted); font-weight: 300; }
+  .entry .entry-body p + p { margin-top: 12px; }
+
+  /* ---------- TRUSTED / TESTIMONIALS ---------- */
+  section.trusted { padding: 90px 24px; background: var(--ink); }
+  .logos { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 40px; }
+  .logos span { padding: 12px 24px; border-radius: 999px; border: 1px solid var(--glass-edge); background: var(--glass); font-family: var(--display); letter-spacing: .14em; font-size: .85rem; color: var(--muted); }
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .quote { padding: 28px; border-radius: 22px; background: linear-gradient(145deg, rgba(var(--wh),.09), rgba(var(--wh),.02)); border: 1px solid var(--glass-edge); }
+  .quote p { font-weight: 300; font-style: italic; }
+  .quote cite { display: block; margin-top: 16px; font-style: normal; font-size: .8rem; letter-spacing: .1em; color: var(--gold); }
+
+  /* ---------- FORM EXTRAS / FOOTER ---------- */
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  footer .socials { display: flex; justify-content: center; gap: 14px; margin: 28px 0 8px; }
+  footer .socials a { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: var(--text); text-decoration: none;
+    background: var(--glass); border: 1px solid var(--glass-edge); transition: color .2s, border-color .2s, transform .2s, box-shadow .2s; }
+  footer .socials a:hover { color: var(--cyan); border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 0 22px rgba(0,229,255,.3); }
+  footer .socials svg { width: 20px; height: 20px; }
+  footer .fine { margin-top: 26px; font-size: .7rem; letter-spacing: .1em; text-transform: none; opacity: .7; }
+
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 900px) {
     .links a:not(.btn) { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .modal-body { padding: 24px 22px 28px; }
+    .demo-frame { height: 280px; }
+    .wa-float { right: 14px; bottom: 14px; }
     .contact-wrap { grid-template-columns: 1fr; }
     .row2 { grid-template-columns: 1fr; }
     .form-card { padding: 26px 20px; }
@@ -322,21 +475,37 @@
     .card { min-width: 140px; padding: 12px 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
 </style>
 </head>
 <body>
 
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
 <nav>
   <a class="brand" href="#top"><img src="assets/favicon.png" alt=""><span>KYLAN <b>2047</b></span></a>
   <div class="links">
     <a href="#pillars">Vision</a>
+    <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#work">Work</a>
+    <a href="#journal">Journal</a>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
     <a class="btn btn-primary" href="#contact">Get in touch</a>
   </div>
 </nav>
+
+<a class="wa-float" href="https://wa.me/263782370514?text=Hi%20Kylan%202047%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.9 1.2 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.6 0-3.2-.4-4.6-1.3l-.3-.2-3.4.9.9-3.3-.2-.3A9.8 9.8 0 1 1 12 21.8zM12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.200 1.600 6L0 24l6.200-1.600C8 23.400 10 24 12 24c6.600 0 12-5.400 12-12S18.600 0 12 0z"/></svg>
+</a>
 
 <header class="hero" id="top">
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -349,7 +518,7 @@
       <p class="tagline">Ideas / Systems / Impact</p>
       <p class="lede">Intelligent systems designed for a limitless future. Same dream, bigger systems.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="#pillars">Explore the vision →</a>
+        <a class="btn btn-primary" href="#work">See the work →</a>
         <a class="btn btn-ghost" href="#contact">Start a project</a>
       </div>
     </div>
@@ -374,41 +543,70 @@
 
 <section class="pillars" id="pillars">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow"><i></i> The meaning</span>
       <h2>IDEAS / SYSTEMS / IMPACT</h2>
       <p>Every part of the mark carries a story.</p>
     </div>
     <div class="cards">
-      <article class="pillar"><span class="num">K</span><h3>Kali</h3><p>Creator, developer, visionary. The hand behind every idea.</p></article>
-      <article class="pillar"><span class="num">47</span><h3>2047</h3><p>The future and its limitless possibilities — the horizon we build toward.</p></article>
-      <article class="pillar"><span class="num">◐</span><h3>Kylie</h3><p>Inspiration, the heart behind it. The orbit that keeps the work human.</p></article>
-      <article class="pillar"><span class="num">◯</span><h3>Kylan</h3><p>AI, intelligence and systems — the engine that turns ideas into impact.</p></article>
+      <article class="pillar reveal"><span class="num">K</span><h3>Kali</h3><p>Creator, developer, visionary. The hand behind every idea.</p></article>
+      <article class="pillar reveal" style="--d:.1s"><span class="num">47</span><h3>2047</h3><p>The future and its limitless possibilities — the horizon we build toward.</p></article>
+      <article class="pillar reveal" style="--d:.2s"><span class="num">◐</span><h3>Kylie</h3><p>Inspiration, the heart behind it. The orbit that keeps the work human.</p></article>
+      <article class="pillar reveal" style="--d:.3s"><span class="num">◯</span><h3>Kylan</h3><p>AI, intelligence and systems — the engine that turns ideas into impact.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow"><i></i> About</span>
+        <h2>THE PERSON BEHIND THE SYSTEMS</h2>
+        <p>Kylan 2047 is the studio and brand of Kali, a developer who builds intelligent systems end to end: a private personal AI assistant, a peer-to-peer messaging app, a 3D car paint studio and an automotive diagnostics tester.</p>
+        <p>Different fields, one habit: start with a clear idea, build it as a system that can grow, and measure the impact. The name looks forward to 2047, the future these systems are being built for.</p>
+        <a class="btn btn-ghost" href="assets/Kylan2047-Brand-Board.png" download>Download the brand board ↓</a>
+        <a class="btn btn-ghost" id="cvBtn" href="#" hidden download>Download CV ↓</a>
+      </div>
+      <div class="stats reveal" style="--d:.15s">
+        <div class="stat"><b data-count="4">0</b><span>Projects</span></div>
+        <div class="stat"><b data-count="4">0</b><span>Disciplines</span></div>
+        <div class="stat"><b data-count="2047" data-plain>0</b><span>Target year</span></div>
+      </div>
+    </div>
+
+    <h3 class="timeline-title reveal">ROAD TO 2047</h3>
+    <div class="timeline">
+      <div class="tl-item done reveal"><small>Done</small><h4>The identity</h4><p>The K47 mark, the orbit and the colours: navy, cyan, army green and gold.</p></div>
+      <div class="tl-item done reveal"><small>Done</small><h4>Color Simulator, phase 1</h4><p>The 3D customization MVP is complete and verified. Accounts, licensed vehicles and career mode are designed for later phases.</p></div>
+      <div class="tl-item done reveal"><small>Bench prototype</small><h4>Tiff Tester Pro v0.3.0</h4><p>Dual-controller safety architecture, CAN and K-Line drivers, BLE and the companion app are implemented. Real-hardware validation is next.</p></div>
+      <div class="tl-item now reveal"><small>Now</small><h4>Kylan AI, phase 2: memory</h4><p>Long-term memory that the owner controls is implemented. Exit criteria are pending before the next phase.</p></div>
+      <div class="tl-item reveal"><small>Horizon</small><h4>2047</h4><p>Same dream, bigger systems.</p></div>
     </div>
   </div>
 </section>
 
 <section class="services" id="services">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow"><i></i> What we build</span>
       <h2>SERVICES</h2>
       <p>From the first idea to systems that scale.</p>
     </div>
     <div class="svc-grid">
-      <article class="svc">
+      <article class="svc reveal">
         <div class="ico">✦</div>
         <h3>IDEAS</h3>
         <p>Strategy, product concepts and brand direction that turn a vision into a clear plan.</p>
         <ul><li>Strategy</li><li>Branding</li><li>Prototyping</li></ul>
       </article>
-      <article class="svc gold">
+      <article class="svc gold reveal" style="--d:.1s">
         <div class="ico">⬡</div>
         <h3>SYSTEMS</h3>
         <p>Web platforms, automation and AI-powered tools engineered to be fast, reliable and built to grow.</p>
         <ul><li>Web apps</li><li>AI &amp; automation</li><li>Architecture</li></ul>
       </article>
-      <article class="svc">
+      <article class="svc reveal" style="--d:.2s">
         <div class="ico">◎</div>
         <h3>IMPACT</h3>
         <p>Launch, measure and refine, so the work delivers real results for the people it serves.</p>
@@ -420,31 +618,100 @@
 
 <section class="work" id="work">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow"><i></i> Selected work</span>
       <h2>WORK</h2>
-      <p>A glimpse of what's been built.</p>
+      <p>Tap a project for the details.</p>
     </div>
     <div class="work-grid">
-      <a class="project" href="#contact">
-        <div class="thumb t1"><span class="glyph">K·01</span></div>
-        <div class="proj-body"><span class="tag">AI / Platform</span><h3>Project One</h3><p>Short description of the problem, the system built and the outcome it delivered.</p><span class="more">View case study →</span></div>
+      <a class="project reveal" href="#work" data-project="kylan-ai">
+        <div class="thumb t1"><span class="badge dev">In development</span><span class="glyph">KYLAN</span></div>
+        <div class="proj-body"><span class="tag">AI · Personal assistant</span><h3>Kylan AI</h3><p>A personal AI operating layer: a private, user-owned assistant with long-term memory you control, a model-agnostic core, web, desktop and CLI.</p><span class="more">View details →</span></div>
       </a>
-      <a class="project" href="#contact">
-        <div class="thumb t2"><span class="glyph">K·02</span></div>
-        <div class="proj-body"><span class="tag">Web / Brand</span><h3>Project Two</h3><p>Short description of the problem, the system built and the outcome it delivered.</p><span class="more">View case study →</span></div>
+      <a class="project reveal" style="--d:.1s" href="#work" data-project="kylan-connect">
+        <div class="thumb t2"><span class="badge dev">In development</span><span class="glyph">K·LINK</span></div>
+        <div class="proj-body"><span class="tag">Mobile · P2P messaging</span><h3>Kylan Connect</h3><p>A peer-to-peer messaging app built with Flutter for Android, iOS and Windows.</p><span class="more">View details →</span></div>
       </a>
-      <a class="project" href="#contact">
-        <div class="thumb t3"><span class="glyph">K·03</span></div>
-        <div class="proj-body"><span class="tag">Automation</span><h3>Project Three</h3><p>Short description of the problem, the system built and the outcome it delivered.</p><span class="more">View case study →</span></div>
+      <a class="project reveal" style="--d:.2s" href="#work" data-project="color-simulator">
+        <div class="thumb t3"><span class="badge live">Phase 1 complete</span><span class="glyph">3D·PAINT</span></div>
+        <div class="proj-body"><span class="tag">3D · Web app</span><h3>Color Simulator</h3><p>A browser-based 3D car paint and customization studio: paint panels with realistic finishes, add decals, swap wheels and export renders.</p><span class="more">View details →</span></div>
+      </a>
+      <a class="project reveal" style="--d:.3s" href="#work" data-project="tiff-tester-pro">
+        <div class="thumb t4"><span class="badge proto">Bench prototype</span><span class="glyph">TIFF</span></div>
+        <div class="proj-body"><span class="tag">Hardware · Diagnostics</span><h3>Tiff Tester Pro</h3><p>An automotive module tester and diagnostic platform: ESP32 controller, independent Arduino safety controller and a Flutter companion app.</p><span class="more">View details →</span></div>
       </a>
     </div>
   </div>
 </section>
 
+<dialog class="modal" id="projectModal" aria-labelledby="mTitle">
+  <div class="modal-head" id="mHead">
+    <button class="icon-btn modal-close" id="mClose" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <span class="badge" id="mBadge"></span>
+    <span class="glyph" id="mGlyph"></span>
+  </div>
+  <div class="modal-body">
+    <span class="tag" id="mTag"></span>
+    <h3 id="mTitle"></h3>
+    <p id="mDesc"></p>
+    <h5>Highlights</h5>
+    <ul class="feat" id="mFeat"></ul>
+    <h5>Built with</h5>
+    <ul class="chips" id="mStack"></ul>
+    <div class="modal-actions" id="mActions"></div>
+    <iframe class="demo-frame" id="mDemo" title="Live demo" hidden loading="lazy"></iframe>
+  </div>
+</dialog>
+
+<section class="journal" id="journal">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><i></i> Build log</span>
+      <h2>JOURNAL</h2>
+      <p>Notes from the workshop, straight from the project docs.</p>
+    </div>
+    <div class="entries">
+      <details class="entry reveal" open>
+        <summary><div><small>Kylan AI · Phase 2</small><h3>Memory you control</h3></div></summary>
+        <div class="entry-body">
+          <p>Kylan's memory starts in "ask" mode: it proposes what it learned, and uses nothing until you accept it. Say "remember that…" and it stores the fact directly.</p>
+          <p>Incognito conversations neither read nor write memory, and the Core makes a verified backup of its database every day. Phase 2 is implemented; the exit criteria are still pending.</p>
+        </div>
+      </details>
+      <details class="entry reveal">
+        <summary><div><small>Tiff Tester Pro · v0.3.0</small><h3>Two brains are safer than one</h3></div></summary>
+        <div class="entry-body">
+          <p>The tester pairs an ESP32 main controller with an independent Arduino Nano safety controller, so a fault in one cannot silently drive the outputs. CAN and K-Line drivers, a BLE service and a Flutter app are all in place.</p>
+          <p>It is still a bench prototype: nothing has been validated end to end on real hardware, and the injector and coil driver hardware doesn't exist yet.</p>
+        </div>
+      </details>
+      <details class="entry reveal">
+        <summary><div><small>Color Simulator · Phase 1</small><h3>The 3D paint studio works</h3></div></summary>
+        <div class="entry-body">
+          <p>Pick a vehicle, orbit it, paint panels with solid, metallic, matte, gloss, pearlescent and chrome finishes, project decals across seams, swap wheels, and save builds to a garage. Undo and redo are real history, and you can export a 2× PNG.</p>
+          <p>Accounts, licensed vehicles, the workshop environment and the career mode are designed but not built yet.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="trusted" id="trusted" hidden>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><i></i> Trust</span>
+      <h2 id="trustedTitle">TRUSTED BY</h2>
+    </div>
+    <div class="logos" id="logos"></div>
+    <div class="quotes" id="quotes"></div>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <div class="wrap contact-wrap">
-    <div class="contact-copy">
+    <div class="contact-copy reveal">
       <span class="eyebrow"><i></i> Let's talk</span>
       <h2>START A PROJECT</h2>
       <p>Tell us about your idea. We'll reply with next steps and a clear path from concept to impact.</p>
@@ -455,7 +722,7 @@
         <div><span>Response time</span>Within 2 business days</div>
       </div>
     </div>
-    <form class="form-card" id="contactForm" novalidate>
+    <form class="form-card reveal" id="contactForm" novalidate style="--d:.15s">
       <div class="row2">
         <label class="field"><span>Name</span><input name="name" required autocomplete="name" placeholder="Your name"></label>
         <label class="field"><span>Email</span><input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
@@ -464,6 +731,8 @@
         <select name="topic"><option>Ideas</option><option>Systems</option><option>Impact</option><option>Something else</option></select>
       </label>
       <label class="field"><span>Message</span><textarea name="message" required placeholder="What are you building?"></textarea></label>
+      <!-- Honeypot: real visitors never see or fill this; bots do. Formspree discards submissions where it's filled. -->
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
       <button class="btn btn-primary" type="submit">Send message →</button>
       <p class="form-note" id="formNote" role="status"></p>
     </form>
@@ -473,44 +742,198 @@
 <footer>
   <div class="big">BUILT FOR 2047</div>
   <p>Same dream / Bigger systems</p>
+  <div class="socials">
+    <a href="https://github.com/kalivoid2047" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+    </a>
+    <a href="https://wa.me/263782370514" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.300-1.400-.9-.8-1.400-1.700-1.600-2-.2-.3 0-.4.100-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.400s1 2.800 1.200 3c.1.2 2 3.100 4.900 4.300 2.900 1.200 2.900.8 3.400.7.5 0 1.700-.7 1.900-1.400.2-.7.2-1.200.2-1.400-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.300A10 10 0 1 0 12 2zm0 18.200a8.200 8.200 0 0 1-4.200-1.150l-.3-.18-3 .8.8-2.900-.2-.3A8.200 8.200 0 1 1 12 20.200z" fill-rule="evenodd"/></svg>
+    </a>
+    <a href="mailto:honoriad17@gmail.com" aria-label="Email" title="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    </a>
+    <a href="tel:+263782370514" aria-label="Call" title="Call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.100 4.200 2 2 0 0 1 4.100 2h3a2 2 0 0 1 2 1.700c.1 1 .4 1.900.7 2.800a2 2 0 0 1-.5 2.100L8.100 9.900a16 16 0 0 0 6 6l1.300-1.300a2 2 0 0 1 2.100-.4c.9.300 1.800.6 2.800.7a2 2 0 0 1 1.700 2z"/></svg>
+    </a>
+  </div>
+  <p class="fine">© <span id="year">2026</span> Kylan 2047. All rights reserved.</p>
 </footer>
 
 <script>
-  // Mouse / touch parallax tilt for the hero scene
-  const stage = document.getElementById('stage');
-  const scene = document.getElementById('scene');
-  const hero = document.querySelector('.hero');
+  /* ============ CONFIG: fill these in as things become available ============ */
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeqnlew';
+  const ANALYTICS_DOMAIN   = '';   // e.g. 'kylan2047.com' to enable Plausible analytics (no cookies). Empty = analytics off.
+  const CV_URL             = '';   // e.g. 'assets/Kali-CV.pdf' to show a "Download CV" button.
+  const COLOR_SIM_DEMO_URL = '';   // URL of the hosted Color Simulator (its dist/ folder) to enable the live demo.
+  const CLIENTS      = [];         // e.g. ['Acme Ltd', 'Beta Co'] shows a "Trusted by" row.
+  const TESTIMONIALS = [];         // e.g. [{ quote: '...', name: 'Jane Doe', role: 'CEO, Acme' }]
+  /* ========================================================================= */
+
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function tilt(cx, cy) {
-    const r = stage.getBoundingClientRect();
-    const x = (cx - (r.left + r.width / 2)) / window.innerWidth;
-    const y = (cy - (r.top + r.height / 2)) / window.innerHeight;
-    scene.style.transform = `rotateY(${x * 28}deg) rotateX(${-y * 22}deg)`;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  $('#year').textContent = new Date().getFullYear();
+
+  // ---------- Theme toggle ----------
+  $('#themeToggle').addEventListener('click', () => {
+    const light = document.documentElement.dataset.theme !== 'light';
+    document.documentElement.dataset.theme = light ? 'light' : 'dark';
+    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+    $('meta[name="theme-color"]').content = light ? '#F2F6FC' : '#050B17';
+  });
+
+  // ---------- Analytics (Plausible, cookie-free) ----------
+  if (ANALYTICS_DOMAIN) {
+    const s = document.createElement('script');
+    s.defer = true; s.dataset.domain = ANALYTICS_DOMAIN; s.src = 'https://plausible.io/js/script.js';
+    document.head.appendChild(s);
   }
+
+  // ---------- CV button ----------
+  if (CV_URL) { const b = $('#cvBtn'); b.href = CV_URL; b.hidden = false; }
+
+  // ---------- Hero parallax tilt ----------
+  const stage = $('#stage'), scene = $('#scene'), hero = $('.hero');
   if (!reduce) {
-    hero.addEventListener('pointermove', e => tilt(e.clientX, e.clientY));
+    hero.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - (r.left + r.width / 2)) / innerWidth;
+      const y = (e.clientY - (r.top + r.height / 2)) / innerHeight;
+      scene.style.transform = `rotateY(${x * 28}deg) rotateX(${-y * 22}deg)`;
+    });
     hero.addEventListener('pointerleave', () => scene.style.transform = '');
   }
 
-  // Contact form -> Formspree. Paste your endpoint, e.g. 'https://formspree.io/f/xxxxxxxx'
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeqnlew';
-  const form = document.getElementById('contactForm'), note = document.getElementById('formNote');
+  // ---------- Scroll reveal ----------
+  const revealIO = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target; el.classList.add('in'); revealIO.unobserve(el);
+      // Drop the reveal transition afterwards so card hover-tilts stay snappy
+      setTimeout(() => el.classList.remove('reveal', 'in'), 1200);
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' }) : null;
+  $$('.reveal').forEach(el => revealIO ? revealIO.observe(el) : el.classList.add('in'));
+
+  // ---------- Animated counters ----------
+  const countIO = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target; countIO.unobserve(el);
+      const to = +el.dataset.count, dur = reduce ? 0 : 1600, t0 = performance.now();
+      (function step(t) {
+        const p = dur ? Math.min((t - t0) / dur, 1) : 1;
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(t0);
+    });
+  }, { threshold: .6 }) : null;
+  $$('[data-count]').forEach(el => countIO ? countIO.observe(el) : (el.textContent = el.dataset.count));
+
+  // ---------- Cursor glow (mouse only) ----------
+  if (matchMedia('(pointer: fine)').matches && !reduce) {
+    const glow = $('#cursorGlow'), dot = $('#cursorDot');
+    let mx = innerWidth / 2, my = innerHeight / 2, gx = mx, gy = my;
+    addEventListener('pointermove', e => {
+      document.documentElement.classList.add('has-cursor');
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+      dot.classList.toggle('big', !!e.target.closest('a, button, summary, input, select, textarea'));
+    });
+    (function loop() {
+      gx += (mx - gx) * .12; gy += (my - gy) * .12;
+      glow.style.transform = `translate(${gx}px, ${gy}px)`;
+      requestAnimationFrame(loop);
+    })();
+    document.addEventListener('mouseleave', () => document.documentElement.classList.remove('has-cursor'));
+    document.addEventListener('mouseenter', () => document.documentElement.classList.add('has-cursor'));
+  }
+
+  // ---------- Projects + modal ----------
+  const PROJECTS = {
+    'kylan-ai': {
+      title: 'Kylan AI', tag: 'AI · Personal assistant', glyph: 'KYLAN', bg: 't1', badge: ['dev', 'In development'],
+      desc: 'A personal AI operating layer. Kylan is a persistent, user-owned intelligence that knows your context, acts on your behalf within limits you set, and becomes more capable over time without taking authority you did not grant.',
+      feat: ['Private and observable, with a model-agnostic core (cloud or local models)', 'Long-term memory the owner controls: it proposes, you accept', 'Incognito conversations that never read or write memory', 'Core service with a web UI, a desktop shell and a command-line interface', 'Verified daily backups of its database'],
+      stack: ['TypeScript', 'Node.js', 'React', 'Vite', 'Tauri (Rust)', 'pnpm'],
+      links: []
+    },
+    'kylan-connect': {
+      title: 'Kylan Connect', tag: 'Mobile · P2P messaging', glyph: 'K·LINK', bg: 't2', badge: ['dev', 'In development'],
+      desc: 'A peer-to-peer messaging app: conversations that go straight between people instead of through a central server.',
+      feat: ['Peer-to-peer messaging', 'One Flutter codebase for Android, iOS and Windows'],
+      stack: ['Flutter', 'Dart'],
+      links: []
+    },
+    'color-simulator': {
+      title: 'Color Simulator', tag: '3D · Web app', glyph: '3D·PAINT', bg: 't3', badge: ['live', 'Phase 1 complete'],
+      desc: 'A browser-based 3D automotive paint and customization studio, built to grow into a full workshop simulation game. Pick a vehicle, orbit it in 3D, paint it, add decals, swap wheels, and export a render.',
+      feat: ['Paint finishes: solid, metallic, matte, gloss, pearlescent and chrome', 'Decals projected onto the bodywork, with custom uploads', 'Wheel designs, undo and redo, and a saveable garage', '2× PNG export and a photo mode', 'Next: accounts, licensed vehicles and a career mode (designed, not built)'],
+      stack: ['React', 'TypeScript', 'Three.js', 'React Three Fiber', 'Zustand', 'Vite'],
+      links: [], demo: COLOR_SIM_DEMO_URL
+    },
+    'tiff-tester-pro': {
+      title: 'Tiff Tester Pro', tag: 'Hardware · Diagnostics', glyph: 'TIFF', bg: 't4', badge: ['proto', 'Bench prototype'],
+      desc: 'A bench-first automotive module tester, diagnostic and service platform. An ESP32 main controller works alongside an independent Arduino Nano safety controller, with a Flutter companion app for Android.',
+      feat: ['Dual-controller safety architecture', 'CAN and K-Line drivers and a BLE service', 'Test execution driven by module profiles stored on an SD card', 'Version 0.3.0: implemented, but not yet validated end to end on real hardware'],
+      stack: ['ESP32', 'Arduino Nano', 'C++', 'CAN / K-Line', 'Bluetooth LE', 'Flutter'],
+      links: [{ label: 'View on GitHub ↗', href: 'https://github.com/kalivoid2047/TIFF_TESTER_PRO_SD' }]
+    }
+  };
+  const modal = $('#projectModal'), demoFrame = $('#mDemo');
+  function openProject(id) {
+    const p = PROJECTS[id]; if (!p) return;
+    $('#mHead').className = 'modal-head ' + p.bg;
+    const b = $('#mBadge'); b.className = 'badge ' + p.badge[0]; b.textContent = p.badge[1];
+    $('#mGlyph').textContent = p.glyph; $('#mTag').textContent = p.tag; $('#mTitle').textContent = p.title; $('#mDesc').textContent = p.desc;
+    $('#mFeat').replaceChildren(...p.feat.map(t => Object.assign(document.createElement('li'), { textContent: t })));
+    $('#mStack').replaceChildren(...p.stack.map(t => Object.assign(document.createElement('li'), { textContent: t })));
+    const act = $('#mActions'); act.replaceChildren();
+    demoFrame.hidden = true; demoFrame.removeAttribute('src');
+    if (p.demo) {
+      const d = Object.assign(document.createElement('button'), { className: 'btn btn-primary', type: 'button', textContent: 'Try the live demo →' });
+      d.onclick = () => { demoFrame.src = p.demo; demoFrame.hidden = false; d.hidden = true; };
+      act.append(d, Object.assign(document.createElement('a'), { className: 'btn btn-ghost', href: p.demo, target: '_blank', rel: 'noopener', textContent: 'Open full screen ↗' }));
+    }
+    p.links.forEach(l => act.append(Object.assign(document.createElement('a'), { className: 'btn btn-ghost', href: l.href, target: '_blank', rel: 'noopener', textContent: l.label })));
+    const ask = Object.assign(document.createElement('a'), { className: 'btn btn-ghost', href: '#contact', textContent: 'Ask about this project' });
+    ask.onclick = () => modal.close(); act.append(ask);
+    modal.showModal(); modal.scrollTop = 0;
+  }
+  $$('.project').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openProject(a.dataset.project); }));
+  $('#mClose').addEventListener('click', () => modal.close());
+  modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });   // click on backdrop
+  modal.addEventListener('close', () => demoFrame.removeAttribute('src'));
+
+  // ---------- Trusted by / testimonials (shown only when data is provided) ----------
+  if (CLIENTS.length || TESTIMONIALS.length) {
+    $('#trusted').hidden = false;
+    $('#trustedTitle').textContent = TESTIMONIALS.length ? 'KIND WORDS' : 'TRUSTED BY';
+    $('#logos').replaceChildren(...CLIENTS.map(c => Object.assign(document.createElement('span'), { textContent: c })));
+    $('#quotes').replaceChildren(...TESTIMONIALS.map(t => {
+      const q = document.createElement('figure'); q.className = 'quote';
+      const p = Object.assign(document.createElement('p'), { textContent: '“' + t.quote + '”' });
+      const c = Object.assign(document.createElement('cite'), { textContent: t.name + (t.role ? ' · ' + t.role : '') });
+      q.append(p, c); return q;
+    }));
+  }
+
+  // ---------- Contact form -> Formspree (honeypot + minimum-time spam checks) ----------
+  const form = $('#contactForm'), note = $('#formNote'), loadedAt = Date.now();
   const say = (msg, color) => { note.style.color = color; note.textContent = msg; };
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(form));
+    if (d._gotcha) return;                                    // bot filled the hidden field: pretend success
     if (!d.name.trim() || !/^\S+@\S+\.\S+$/.test(d.email) || !d.message.trim()) {
       return say('Please add your name, a valid email and a message.', 'var(--gold)');
     }
-    if (!FORMSPREE_ENDPOINT) {
-      return say('The form isn\'t connected yet. Please email or WhatsApp us instead.', 'var(--gold)');
-    }
+    if (Date.now() - loadedAt < 3000) return say('That was quick! Please try again in a moment.', 'var(--gold)');
+    if (!FORMSPREE_ENDPOINT) return say('The form isn\'t connected yet. Please email or WhatsApp us instead.', 'var(--gold)');
     const btn = form.querySelector('button');
     btn.disabled = true; say('Sending…', 'var(--muted)');
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
-      });
+      const res = await fetch(FORMSPREE_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) });
       if (!res.ok) throw new Error(res.status);
       say('Thanks! Your message was sent. We\'ll be in touch soon.', 'var(--cyan)');
       form.reset();
@@ -519,36 +942,31 @@
     } finally { btn.disabled = false; }
   });
 
-  // 3D tilt on cards
-  document.querySelectorAll('.pillar, .svc, .project').forEach(el => {
+  // ---------- 3D tilt on cards ----------
+  $$('.pillar, .svc, .project').forEach(el => {
     if (reduce) return;
     el.addEventListener('pointermove', e => {
       const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - .5;
-      const py = (e.clientY - r.top) / r.height - .5;
+      const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
       el.style.transform = `rotateY(${px * 14}deg) rotateX(${-py * 14}deg) translateZ(10px)`;
     });
     el.addEventListener('pointerleave', () => el.style.transform = '');
   });
 
-  // Starfield with depth
+  // ---------- Starfield ----------
   (function () {
-    const c = document.getElementById('stars'), ctx = c.getContext('2d');
+    const c = $('#stars'), ctx = c.getContext('2d');
     let w, h, stars = [];
     function size() {
       const d = Math.min(devicePixelRatio || 1, 2);
       w = c.width = c.offsetWidth * d; h = c.height = c.offsetHeight * d;
-      stars = Array.from({ length: 110 }, () => ({
-        x: Math.random() * w, y: Math.random() * h,
-        z: Math.random() * .8 + .2, gold: Math.random() < .15
-      }));
+      stars = Array.from({ length: 110 }, () => ({ x: Math.random() * w, y: Math.random() * h, z: Math.random() * .8 + .2, gold: Math.random() < .15 }));
     }
     function draw() {
       ctx.clearRect(0, 0, w, h);
       for (const s of stars) {
         s.y += s.z * .25; if (s.y > h) { s.y = 0; s.x = Math.random() * w; }
-        ctx.globalAlpha = s.z * .8;
-        ctx.fillStyle = s.gold ? '#D4AF37' : '#9fe9ff';
+        ctx.globalAlpha = s.z * .8; ctx.fillStyle = s.gold ? '#D4AF37' : '#9fe9ff';
         ctx.beginPath(); ctx.arc(s.x, s.y, s.z * 1.6, 0, 6.283); ctx.fill();
       }
       if (!reduce) requestAnimationFrame(draw);
