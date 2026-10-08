@@ -1,0 +1,9 @@
+[
+  { "id": "builtin/racing-stripes", "name": "Racing Stripes", "url": "/K2047/color-simulator/assets/decals/racing-stripes.svg", "category": "Stripes", "defaultScale": 0.9 },
+  { "id": "builtin/chevrons", "name": "Chevrons", "url": "/K2047/color-simulator/assets/decals/chevrons.svg", "category": "Stripes", "defaultScale": 0.5 },
+  { "id": "builtin/checker", "name": "Checker", "url": "/K2047/color-simulator/assets/decals/checker.svg", "category": "Racing", "defaultScale": 0.4 },
+  { "id": "builtin/badge-07", "name": "Number Badge", "url": "/K2047/color-simulator/assets/decals/badge-07.svg", "category": "Racing", "defaultScale": 0.35 },
+  { "id": "builtin/lightning", "name": "Lightning", "url": "/K2047/color-simulator/assets/decals/lightning.svg", "category": "Graphics", "defaultScale": 0.45 },
+  { "id": "builtin/flame", "name": "Flame", "url": "/K2047/color-simulator/assets/decals/flame.svg", "category": "Graphics", "defaultScale": 0.45 },
+  { "id": "builtin/star", "name": "Star", "url": "/K2047/color-simulator/assets/decals/star.svg", "category": "Graphics", "defaultScale": 0.35 }
+]

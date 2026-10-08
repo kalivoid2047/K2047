@@ -1,0 +1,18 @@
+[
+  { "id": "midnight", "name": "Midnight Black", "type": "metallic", "baseColor": "#0d0f12" },
+  { "id": "ghost", "name": "Ghost White", "type": "gloss", "baseColor": "#f1f3f5" },
+  { "id": "gunmetal", "name": "Gunmetal", "type": "metallic", "baseColor": "#4a4f57" },
+  { "id": "racing-red", "name": "Racing Red", "type": "gloss", "baseColor": "#c3101c" },
+  { "id": "candy-orange", "name": "Candy Orange", "type": "metallic", "baseColor": "#e8590c" },
+  { "id": "solar-yellow", "name": "Solar Yellow", "type": "solid", "baseColor": "#f4c20d" },
+  { "id": "forest", "name": "British Racing Green", "type": "gloss", "baseColor": "#0f4a2f" },
+  { "id": "ocean", "name": "Ocean Blue", "type": "metallic", "baseColor": "#134e9e" },
+  { "id": "nardo", "name": "Concrete Grey", "type": "solid", "baseColor": "#8d9096" },
+  { "id": "sage-matte", "name": "Sage Matte", "type": "matte", "baseColor": "#7f8c74" },
+  { "id": "matte-black", "name": "Matte Black", "type": "matte", "baseColor": "#17181a" },
+  { "id": "violet-pearl", "name": "Violet Pearl", "type": "pearlescent", "baseColor": "#2a1458", "secondaryColor": "#ff4fd8" },
+  { "id": "aqua-pearl", "name": "Aqua Pearl", "type": "pearlescent", "baseColor": "#0b3d4a", "secondaryColor": "#6bffe0" },
+  { "id": "champagne", "name": "Champagne", "type": "pearlescent", "baseColor": "#d8c7a0", "secondaryColor": "#ffffff" },
+  { "id": "copper", "name": "Copper", "type": "metallic", "baseColor": "#b87333" },
+  { "id": "chrome", "name": "Chrome", "type": "chrome", "baseColor": "#e6e8ea" }
+]

@@ -1,0 +1,326 @@
+{
+  "id": "demo-hatch",
+  "name": "Compact Hatch",
+  "manufacturer": "Workshop Dev",
+  "model": "Note-style",
+  "year": 2024,
+  "category": "Hatchback",
+  "source": {
+    "kind": "procedural",
+    "generator": "demo-hatch"
+  },
+  "thumbnail": "/K2047/color-simulator/assets/vehicles/demo-hatch/thumbnail.svg",
+  "components": [
+    {
+      "id": "body",
+      "label": "Body Shell",
+      "group": "Body",
+      "meshes": [
+        "body"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "hood",
+      "label": "Hood",
+      "group": "Body",
+      "meshes": [
+        "hood"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "roof",
+      "label": "Roof",
+      "group": "Body",
+      "meshes": [
+        "roof"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "trunk",
+      "label": "Tailgate",
+      "group": "Body",
+      "meshes": [
+        "trunk"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "front_bumper",
+      "label": "Front Bumper",
+      "group": "Body",
+      "meshes": [
+        "front_bumper"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "rear_bumper",
+      "label": "Rear Bumper",
+      "group": "Body",
+      "meshes": [
+        "rear_bumper"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "door_fl",
+      "label": "Front Left Door",
+      "group": "Doors",
+      "meshes": [
+        "door_fl"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "door_fr",
+      "label": "Front Right Door",
+      "group": "Doors",
+      "meshes": [
+        "door_fr"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "door_rl",
+      "label": "Rear Left Door",
+      "group": "Doors",
+      "meshes": [
+        "door_rl"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "door_rr",
+      "label": "Rear Right Door",
+      "group": "Doors",
+      "meshes": [
+        "door_rr"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "mirror_l",
+      "label": "Left Mirror",
+      "group": "Trim",
+      "meshes": [
+        "mirror_l"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "mirror_r",
+      "label": "Right Mirror",
+      "group": "Trim",
+      "meshes": [
+        "mirror_r"
+      ],
+      "selectable": true,
+      "paintZone": "body"
+    },
+    {
+      "id": "spoiler",
+      "label": "Roof Spoiler",
+      "group": "Trim",
+      "meshes": [
+        "spoiler"
+      ],
+      "selectable": true,
+      "paintZone": "trim"
+    },
+    {
+      "id": "wheel_fl",
+      "label": "Front Left Wheel",
+      "group": "Wheels",
+      "meshes": [
+        "wheel_fl"
+      ],
+      "selectable": true,
+      "paintZone": "wheels"
+    },
+    {
+      "id": "wheel_fr",
+      "label": "Front Right Wheel",
+      "group": "Wheels",
+      "meshes": [
+        "wheel_fr"
+      ],
+      "selectable": true,
+      "paintZone": "wheels"
+    },
+    {
+      "id": "wheel_rl",
+      "label": "Rear Left Wheel",
+      "group": "Wheels",
+      "meshes": [
+        "wheel_rl"
+      ],
+      "selectable": true,
+      "paintZone": "wheels"
+    },
+    {
+      "id": "wheel_rr",
+      "label": "Rear Right Wheel",
+      "group": "Wheels",
+      "meshes": [
+        "wheel_rr"
+      ],
+      "selectable": true,
+      "paintZone": "wheels"
+    },
+    {
+      "id": "tires",
+      "label": "Tires",
+      "group": "Wheels",
+      "meshes": [
+        "tire_fl",
+        "tire_fr",
+        "tire_rl",
+        "tire_rr"
+      ],
+      "selectable": false,
+      "fixedMaterial": "rubber"
+    },
+    {
+      "id": "glass",
+      "label": "Windows",
+      "group": "Glass",
+      "meshes": [
+        "glass"
+      ],
+      "selectable": false,
+      "fixedMaterial": "glass"
+    },
+    {
+      "id": "headlights",
+      "label": "Headlights",
+      "group": "Lights",
+      "meshes": [
+        "headlight_l",
+        "headlight_r"
+      ],
+      "selectable": false,
+      "fixedMaterial": "headlight"
+    },
+    {
+      "id": "taillights",
+      "label": "Taillights",
+      "group": "Lights",
+      "meshes": [
+        "taillight_l",
+        "taillight_r"
+      ],
+      "selectable": false,
+      "fixedMaterial": "taillight"
+    },
+    {
+      "id": "grille",
+      "label": "Grille",
+      "group": "Trim",
+      "meshes": [
+        "grille"
+      ],
+      "selectable": false,
+      "fixedMaterial": "plastic"
+    },
+    {
+      "id": "plates",
+      "label": "Plates",
+      "group": "Trim",
+      "meshes": [
+        "plate_f",
+        "plate_r"
+      ],
+      "selectable": false,
+      "fixedMaterial": "plate"
+    },
+    {
+      "id": "grille_trim",
+      "label": "Grille Trim",
+      "group": "Trim",
+      "meshes": [
+        "grille_trim"
+      ],
+      "selectable": false,
+      "fixedMaterial": "chrome"
+    }
+  ],
+  "paintZones": [
+    {
+      "id": "body",
+      "label": "Body",
+      "defaultPaint": {
+        "type": "metallic",
+        "baseColor": "#7a7e84",
+        "metallic": 0.85,
+        "roughness": 0.28,
+        "clearcoat": 0.7,
+        "clearcoatRoughness": 0.08,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "trim",
+      "label": "Trim",
+      "defaultPaint": {
+        "type": "gloss",
+        "baseColor": "#15171a",
+        "metallic": 0,
+        "roughness": 0.22,
+        "clearcoat": 1,
+        "clearcoatRoughness": 0.03,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "wheels",
+      "label": "Wheels",
+      "defaultPaint": {
+        "type": "metallic",
+        "baseColor": "#b9bdc2",
+        "metallic": 0.9,
+        "roughness": 0.3,
+        "clearcoat": 0.4,
+        "clearcoatRoughness": 0.1,
+        "opacity": 1
+      }
+    }
+  ],
+  "wheelOptions": [
+    "steel-10",
+    "sport-5",
+    "turbine-10",
+    "mesh-16"
+  ],
+  "defaultWheelDesign": "steel-10",
+  "decalZones": [
+    "body",
+    "hood",
+    "roof",
+    "trunk",
+    "front_bumper",
+    "rear_bumper",
+    "door_fl",
+    "door_fr",
+    "door_rl",
+    "door_rr"
+  ],
+  "metadata": {
+    "author": "Project (procedurally generated)",
+    "license": "CC0 / project-owned",
+    "notes": "Original procedural placeholder with small-tall-hatch proportions. Not a copy of any real model; replaced as default by a licensed GLB when available."
+  }
+}

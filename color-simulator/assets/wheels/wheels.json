@@ -1,0 +1,6 @@
+[
+  { "id": "steel-10", "name": "Steel Disc", "style": "steel", "spokes": 10, "description": "Stamped steel wheel with ventilation holes." },
+  { "id": "sport-5", "name": "Sport 5", "style": "spoke", "spokes": 5, "description": "Five thick spokes, a classic sport look." },
+  { "id": "turbine-10", "name": "Turbine", "style": "spoke", "spokes": 10, "description": "Ten slim spokes." },
+  { "id": "mesh-16", "name": "Fine Mesh", "style": "spoke", "spokes": 16, "description": "Dense, thin spokes." }
+]
